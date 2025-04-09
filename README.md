@@ -1,4 +1,4 @@
-# indice del repositorio
+# Indice del repositorio
 
 1. [0](./0-Inicio)
 2. [1](./01-NodeJS)
