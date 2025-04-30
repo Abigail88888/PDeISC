@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <!--Solo en este caso por ser varias paginas incluyo el body y el script en el mismo HTML sino siempre lo hago de manera externa-->
+      <title>Click</title>
+      <style>
+        body { 
+          font-family: sans-serif; 
+          text-align: center; 
+          margin-top: 40px;
+        }
+
+        button { 
+          padding: 10px; 
+          font-size: 16px; 
+          cursor: pointer;
+        }
+
+        #mensaje {
+          margin-top: 20px;
+          font-size: 18px;
+          color: #333;
+        }
+      </style>
+    </head>
+    <body>
+      <h2>Tipo de evento: Click</h2>
+      <button id="btnClick">Haz clic aquí</button>
+      <p id="mensaje">Contador de clics: 0</p>
+
+      <script>
+        let contador = 0;
+        const mensaje = document.getElementById('mensaje');
+        const boton = document.getElementById('btnClick');
+
+        boton.addEventListener('click', () => {
+          contador++;
+          mensaje.textContent = `Contador de clics: ${contador}`;
+        });
+      </script>
+    </body>
+  </html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+  <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <!--Solo en este caso por ser varias paginas incluyo el body    y el script en el mismo HTML sino siempre lo hago de manera   externa-->
+      <title>Keydown</title>
+      <style>
+        body { font-family: sans-serif; text-align: center; }
+      </style>
+    </head>
+    <body>
+      <h2>Tipo de evento: Keydown</h2>
+      <p>Presiona cualquier tecla...</p>
+      <p id="mensaje"></p>
+
+      <script>
+        document.addEventListener('keydown', (e) => {
+          document.getElementById('mensaje').textContent = `Tecla     presionada: ${e.key}`;
+        });
+      </script>
+    </body>
+  </html>

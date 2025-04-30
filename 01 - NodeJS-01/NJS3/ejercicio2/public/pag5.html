@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <!--Solo en este caso por ser varias paginas incluyo el       body  y el script en el mismo HTML sino siempre lo hago de        manera   externa-->
+      <title>Mousemove</title>
+      <style>
+        body {
+          font-family: sans-serif;
+          text-align: center;
+          transition: background-color 0.5s;
+        }
+        #zona {
+          margin: 30px auto;
+          width: 300px;
+          height: 150px;
+          border: 2px solid black;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      </style>
+    </head>
+    <body>
+      <h2>Tipo de evento: Mousemove</h2>
+      <div id="zona">Mueve el mouse aquí</div>
+      <p id="mensaje"></p>
+
+      <script>
+        const zona = document.getElementById('zona');
+        zona.addEventListener('mousemove', () => {
+          const color = '#' + Math.floor(Math.random() * 16777215).   toString(16);
+          document.body.style.backgroundColor = color;
+          document.getElementById('mensaje').textContent = `Fondo     cambiado a: ${color}`;
+        });
+      </script>
+    </body>
+  </html>
