@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Registro de Usuarios</title>
+        <link rel="stylesheet" href="estilo.css"/>
+      </head>
+      <body>
+        <!--Container para hacer el formulario-->
+        <div class="container">
+          <form id="formulario">
+            <h2>Registrar Usuario</h2>
+            <!--Los inputs-->
+            <input type="text" id="username" placeholder="Nombre de usuario" required />
+            <input type="password" id="password" placeholder="Contraseña" required />
+            <input type="password" id="confirm" placeholder="Confirmar contraseña" required />
+            <button type="submit">Agregar</button>
+            <p id="mensaje" class="mensaje"></p>
+          </form>
+          <!--Un div para mostrar la lista de la gente que se registro-->
+          <div class="lista-container">
+            <h2>Personas Registradas</h2>
+            <ul id="lista"></ul>
+          </div>
+        </div>
+        <script src="funciones.js"></script>
+      </body>
+    </html>
