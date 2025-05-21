@@ -1,0 +1,46 @@
+  <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Array con push</title>
+        <link rel="stylesheet" href="css/estilo.css"/>
+      </head>
+      <body>
+        <!--Hago un container para todo el formulario-->
+        <div class="container">
+          <form id="formulario">
+          <!--Inputs para el array de las frutas-->
+            <h2>Agregar Frutas</h2>
+            <div id="frutas-container">
+              <input type="text" name="fruta" placeholder="Fruta 1" />
+              <input type="text" name="fruta" placeholder="Fruta 2" />
+              <input type="text" name="fruta" placeholder="Fruta 3" />
+            </div>
+            <button type="button" id="agregar-fruta">Agregar más frutas</button>
+            <!--Inputs para el array de amigos-->
+            <h2>Agregar Amigos</h2>
+            <div id="amigos-container">
+              <input type="text" name="amigo" placeholder="Amigo 1" />
+              <input type="text" name="amigo" placeholder="Amigo 2" />
+              <input type="text" name="amigo" placeholder="Amigo 3" />
+            </div>
+            <button type="button" id="agregar-amigo">Agregar más amigos</button>
+            <!--Array de numeros-->
+            <h2>Agregar Número</h2>
+            <input type="number" id="numero" name="numero" placeholder="Número" />
+
+            <button type="submit">Enviar</button>
+            <!--Cargamos los datos-->
+            <p id="mensaje" class="mensaje"></p>
+            <!--Mensaje de si salio todo bien o no-->
+          </form>
+          <!--Un div para mostrar los datos que guardamos en los arrays-->
+          <div class="lista-container">
+            <h2>Datos guardados</h2>
+            <ul id="lista"></ul>
+          </div>
+        </div>
+        <script src="js/funciones.js"></script>
+      </body>
+  </html>

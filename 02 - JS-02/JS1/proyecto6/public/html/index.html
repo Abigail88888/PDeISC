@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ejercicio 6 - splice()</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Ejercicio 6 - Método splice()</h1>
+    
+    <section class="card">
+      <h2>Lista de elementos</h2>
+      <ul id="listaElementos"></ul>
+      <button onclick="mostrarElementos()">Mostrar elementos iniciales</button>
+    </section>
+
+    <section class="card">
+      <h2>Eliminar elementos</h2>
+      <input type="number" id="indiceEliminar" placeholder="Índice a eliminar" />
+      <input type="number" id="cantidadEliminar" placeholder="Cantidad a eliminar" />
+      <button onclick="eliminarElementos()">Eliminar</button>
+    </section>
+
+    <section class="card">
+      <h2>Insertar elementos</h2>
+      <input type="number" id="indiceInsertar" placeholder="Índice para insertar" />
+      <input type="text" id="elementoInsertar" placeholder="Elemento a insertar" />
+      <button onclick="insertarElemento()">Insertar</button>
+    </section>
+  </main>
+
+  <script src="./js/ej6_splice.js"></script>
+</body>
+</html>

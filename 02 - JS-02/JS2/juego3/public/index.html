@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Piedra, Papel o Tijeras</title>
+      <link rel="stylesheet" href="estilo.css" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+      <h1>Piedra, Papel o Tijeras</h1>
+
+      <!-- Marcador de puntajes -->
+      <div class="marcador">
+        <p>Jugador: <span id="scoreJugador">0</span></p>
+        <p>CPU: <span id="scoreCPU">0</span></p>
+      </div>
+
+      <!-- las opciones que el jugador puede elegir -->
+      <div class="zona-eleccion">
+        <p>Elegí tu jugada:</p>
+        <div id="opciones">
+          <!-- Cada imagen representa una jugada posible -->
+          <img src="img/piedra.jpg" alt="piedra" />
+          <img src="img/papel.jpg" alt="papel" />
+          <img src="img/tijera.jpg" alt="tijera" />
+        </div>
+      </div>
+
+      <!-- Muestra la jugada del jugador y de terminator -->
+      <div class="combate">
+        <div>
+          <p>Jugador</p>
+          <img id="jugadorImg" src="img/interrogante.jpg" />
+        </div>
+        <div>
+          <p>CPU</p>
+          <img id="cpuImg" src="img/cpu.jpg" />
+        </div>
+      </div>
+
+      <!-- Resultado de la ronda -->
+      <p id="resultado"></p>
+
+      <script src="funciones.js"></script>
+    </body>
+  </html>

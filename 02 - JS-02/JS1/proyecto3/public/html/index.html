@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 3 - shift()</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Ejercicio 3 - Método shift()</h1>
+    <form id="formShift">
+      <section class="card">
+        <h2>Eliminar primer animal</h2>
+        <input type="text" id="animalShiftInput" placeholder="Nombre de animal">
+        <button type="button" onclick="agregarAnimal()">Agregar animal</button>
+        <button type="button" onclick="eliminarPrimerAnimal()">Eliminar primer animal</button>
+        <ul id="listaAnimalesShift"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Eliminar primer producto</h2>
+        <input type="text" id="productoShiftInput" placeholder="Producto">
+        <button type="button" onclick="agregarProducto()">Agregar producto</button>
+        <button type="button" onclick="eliminarPrimerProducto()">Eliminar primer producto</button>
+        <ul id="listaProductosShift"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Vaciar lista de elementos</h2>
+        <button type="button" onclick="vaciarLista()">Vaciar lista de animales y productos</button>
+        <ul id="listaVaciadaShift"></ul>
+      </section>
+    </form>
+  </main>
+
+  <script type="module" src="js/funciones.js"></script>
+</body>
+</html>

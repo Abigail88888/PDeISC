@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unshift()</title>
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Ejercicio 3 - Método unshift()</h1>
+    <form id="formUnshift">
+      <section class="card">
+        <h2>Agregar nuevo elemento al inicio</h2>
+        <input type="text" id="animalUnshiftInput" placeholder="Nuevo animal">
+        <button type="button" onclick="agregarAnimal()">Agregar animal al inicio</button>
+        <ul id="listaAnimalesUnshift"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Agregar nuevo producto al inicio</h2>
+        <input type="text" id="productoUnshiftInput" placeholder="Nuevo producto">
+        <button type="button" onclick="agregarProducto()">Agregar producto al inicio</button>
+        <ul id="listaProductosUnshift"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Vaciar lista de animales y productos</h2>
+        <button type="button" onclick="vaciarLista()">Vaciar lista</button>
+        <ul id="listaVaciadaUnshift"></ul>
+      </section>
+    </form>
+  </main>
+
+  <script src="js/funciones.js"></script>
+</body>
+</html>

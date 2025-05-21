@@ -1,0 +1,40 @@
+    <!DOCTYPE html>
+      <html lang="es">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Ejercicio 5 - splice()</title>
+        <link rel="stylesheet" href="css/estilo.css" />
+      </head>
+      <body>
+        <main class="container">
+          <h1>Ejercicio 5 - Método splice()</h1>
+
+          <section class="card">
+            <h2>Eliminar desde posición 1</h2>
+            <button id="btnEliminar">Eliminar</button>
+          </section>
+
+          <section class="card">
+            <h2>Insertar en posición 1</h2>
+            <input type="text" id="inputInsertar" placeholder="Letra" maxlength="1">
+            <button id="btnInsertar">Insertar</button>
+          </section>
+
+          <section class="card">
+            <h2>Reemplazar desde una posición</h2>
+            <input type="number" id="inputPosicion" placeholder="Posición">
+            <input type="text" id="inputNuevas" placeholder="Letras separadas por coma (ej: X,Y)">
+            <button id="btnReemplazar">Reemplazar</button>
+          </section>
+
+          <section class="card">
+            <h2>Resultado</h2>
+            <ul id="listaLetras"></ul>
+            <p id="mensajeError" class="error"></p>
+         </section>
+        </main>
+
+        <script src="js/funciones.js"></script>
+      </body>
+    </html>

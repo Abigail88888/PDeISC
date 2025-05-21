@@ -1,0 +1,89 @@
+/* Estilos generaless*/
+body {
+  background-color: #111;
+  color: #fff;
+  text-align: center;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 2rem;
+}
+
+h1 {
+  color: #ff0;
+}
+
+/* Marcador de puntoos*/
+.marcador {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Opciones */
+.zona-eleccion img {
+  width: 100px;
+  margin: 0 15px;
+  cursor: pointer;
+  transition: transform 0.3s;
+  border-radius: 12px;
+}
+
+.zona-eleccion img:hover {
+  transform: scale(1.2);
+}
+
+/* Zona de combate */
+.combate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.combate img {
+  width: 120px;
+  border: 3px solid white;
+  border-radius: 15px;
+}
+
+/* Resultado */
+#resultado {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: lightgreen;
+}
+
+/* Animación simple */
+.animar {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* Animación de ganador */
+.ganador {
+  transform: scale(1.4);
+  border: 3px solid #0f0;
+  box-shadow: 0 0 20px #0f0;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* animacionesss */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Medie queries para que sea responsive */
+@media (max-width: 600px) {
+  .zona-eleccion img,
+  .combate img {
+    width: 80px;
+  }
+
+  .marcador {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
