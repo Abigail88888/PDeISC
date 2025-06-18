@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ingreso y filtrado de números</title>
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Ingreso de Números</h1>
+    <form id="formIngreso">
+      <input type="number" id="numero" placeholder="Ingresá un número entero" required />
+      <button type="submit">Agregar</button>
+      <p id="mensaje"></p>
+    </form>
+
+    <section id="numerosCargados">
+      <h2>Números ingresados (<span id="contador">0</span>/20)</h2>
+      <ul id="listaNumeros"></ul>
+      <button id="guardarTxt" disabled>Guardar archivo .txt</button>
+    </section>
+
+    <hr>
+
+    <h1>Subida y Filtrado de Archivo</h1>
+    <form id="formArchivo">
+      <input type="file" id="archivoTxt" accept=".txt" required />
+      <button type="submit">Subir y filtrar</button>
+      <p id="mensajeArchivo"></p>
+    </form>
+
+    <section id="resultados">
+      <h2>Resultados del filtrado</h2>
+      <div id="resultadoContenido"></div>
+    </section>
+  </main>
+
+  <!-- Script separado -->
+  <script src="funciones.js"></script>
+</body>
+</html>

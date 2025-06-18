@@ -1,0 +1,100 @@
+/* Diseño base limpio y centrado */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+/* Encabezado principal */
+h1 {
+  margin-top: 30px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+/* Formularios */
+form {
+  background-color: white;
+  padding: 20px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="number"],
+input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+/* Mensajes y advertencias */
+#mensaje,
+#mensajeArchivo {
+  margin: 10px 0;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Listado de números ingresados y válidos */
+#numerosIngresados,
+#resultado {
+  margin-top: 10px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.05);
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  form, #numerosIngresados, #resultado {
+    width: 95%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+}
