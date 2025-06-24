@@ -1,114 +1,129 @@
-// script.js
+    // Recuperar números desde localStorage o array vacío
+    const numeros = JSON.parse(localStorage.getItem("numeros")) || [];
 
-// Elementos del DOM
-const formIngreso = document.getElementById('formIngreso');
-const formUpload = document.getElementById('formUpload');
-const inputNumero = document.getElementById('numero');
-const listaNumeros = document.getElementById('listaNumeros');
-const advertencia = document.getElementById('advertencia');
-const resultadoContenedor = document.getElementById('resultadoContenedor');
-const resultadoTexto = document.getElementById('resultadoTexto');
-const descargaLink = document.getElementById('descargaLink');
+    // Elementos del DOM
+    const listaDiv = document.getElementById("numerosIngresados");
+    const formNumeros = document.getElementById("formNumeros");
+    const guardarBtn = document.getElementById("guardarTxt");
+    const mensaje = document.getElementById("mensaje");
+    const archivoForm = document.getElementById("formArchivo");
+    const resultado = document.getElementById("resultado");
+    const inputNumero = document.getElementById("numero");
 
-let numeros = []; // Almacena los números ingresados manualmente
+    // Mostrar los números ingresados en pantalla
+    const renderNumeros = () => {
+      // Mostrar cada número en un div
+      listaDiv.innerHTML = numeros.map(n => `<div>${n}</div>`).join("");
 
-// Validar y agregar número al array
-formIngreso.addEventListener('submit', e => {
-  e.preventDefault();
+      // Guardar en localStorage
+      localStorage.setItem("numeros", JSON.stringify(numeros));
 
-  const valor = inputNumero.value.trim();
+      // Activar el botón "Guardar archivo" solo con 10 o más números
+      guardarBtn.disabled = numeros.length < 10;
 
-  // Validación: debe ser entero positivo
-  if (!/^\d+$/.test(valor)) {
-    advertencia.innerHTML = 'Por favor, ingresá un número entero positivo.';
-    return;
-  }
+      // Mensaje visual informativo
+      mensaje.textContent = `Cargaste ${numeros.length} número(s).`;
+    };
 
-  const numero = parseInt(valor);
+    // Ejecutar al cargar la página
+    renderNumeros();
 
-  // No más de 20 números
-  if (numeros.length >= 20) {
-    advertencia.innerHTML = 'No podés ingresar más de 20 números.';
-    return;
-  }
+    // Evento al agregar número
+    formNumeros.addEventListener("submit", e => {
+      e.preventDefault();
+      const num = parseInt(inputNumero.value);
 
-  numeros.push(numero);
-  inputNumero.value = '';
-  advertencia.innerHTML = '';
-  renderLista();
-
-  // Autoenvío al llegar a 10 valores mínimo
-  if (numeros.length >= 10) {
-    enviarNumeros();
-  }
-});
-
-// Muestra la lista de números ingresados en pantalla
-function renderLista() {
-  listaNumeros.innerHTML = numeros.map(n => `<li>${n}</li>`).join('');
-}
-
-// Enviar números al servidor para guardar como TXT
-function enviarNumeros() {
-  fetch('/guardar', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ numeros })
-  })
-    .then(res => res.blob())
-    .then(blob => {
-      const url = URL.createObjectURL(blob);
-      descargaLink.href = url;
-      descargaLink.download = 'datos.txt';
-      descargaLink.textContent = 'Descargar datos.txt';
-      descargaLink.style.display = 'inline-block';
-    })
-    .catch(err => {
-      advertencia.innerHTML = 'Error al guardar los números.';
-    });
-}
-
-// Subir archivo txt al servidor y procesar
-formUpload.addEventListener('submit', e => {
-  e.preventDefault();
-
-  const archivo = document.getElementById('archivo').files[0];
-  if (!archivo) {
-    advertencia.innerHTML = 'Seleccioná un archivo para subir.';
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append('archivo', archivo);
-
-  fetch('/upload', {
-    method: 'POST',
-    body: formData
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.error) {
-        advertencia.innerHTML = data.error;
+      // Validación: número mayor a 0
+      if (isNaN(num) || num <= 0) {
+        mensaje.textContent = " Solo se permiten números mayores a 0.";
         return;
       }
 
-      advertencia.innerHTML = '';
-      resultadoContenedor.style.display = 'block';
+      // Validación: máximo 20 números
+      if (numeros.length >= 20) {
+        mensaje.textContent = " Ya ingresaste el máximo de 20 números.";
+        return;
+      }
 
-      resultadoTexto.innerHTML = `
-        <p>Números válidos: ${data.validos.join(', ')}</p>
-        <p>Cantidad de válidos: ${data.cantidadValidos}</p>
-        <p>Cantidad de inválidos: ${data.cantidadInvalidos}</p>
-        <p>Porcentaje útiles: ${data.porcentaje}%</p>
-        ${data.advertencia ? `<p><strong>${data.advertencia}</strong></p>` : ''}
-      `;
+      // Validación: sin repetidos
+      if (numeros.includes(num)) {
+        mensaje.textContent = ` El número ${num} ya fue ingresado.`;
+        return;
+      }
 
-      descargaLink.href = '/' + data.archivoResultado;
-      descargaLink.download = 'resultado.txt';
-      descargaLink.textContent = 'Descargar resultado.txt';
-      descargaLink.style.display = 'inline-block';
-    })
-    .catch(err => {
-      advertencia.innerHTML = 'Error al subir o procesar el archivo.';
+      // Agregar número y actualizar interfaz
+      numeros.push(num);
+      inputNumero.value = "";
+      renderNumeros();
     });
-});
+
+    // Eliminar último número
+    document.getElementById("eliminarUltimo").addEventListener("click", () => {
+      numeros.pop();
+      renderNumeros();
+    });
+
+    // Eliminar todos los números
+    document.getElementById("eliminarTodos").addEventListener("click", () => {
+      numeros.length = 0;
+      renderNumeros();
+    });
+
+    // Guardar archivo .txt con fetch
+    guardarBtn.addEventListener("click", () => {
+      fetch("/guardar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ numeros })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("Error al guardar");
+        return res.text();
+      })
+      .then(msg => {
+        mensaje.textContent = ` ${msg}`;
+      })
+      .catch(err => {
+        mensaje.textContent = `❌ No se pudo guardar el archivo.`;
+      });
+    });
+
+    // Procesamiento del archivo .txt
+    archivoForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const archivo = document.getElementById("archivoTxt").files[0];
+      if (!archivo) return;
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const contenido = reader.result;
+
+        fetch("/procesar", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ texto: contenido })
+        })
+        .then(res => res.json())
+        .then(data => {
+          // Mostramos mensaje de confirmación + resultados
+          //resultado.innerHTML = `<div style="padding: 1rem; background-color: #e6ffe6; border-left: 5px solid #4caf50; margin-bottom: 1rem;"> ✅ <strong>resultados.txt cargado correctamente</strong></div><h3> Números útiles (empiezan y terminan igual):</h3><p>${validos.join(", ") || "Ninguno"}</p><h3> Números que no cumplen:</h3>   <p>${noUtiles.join(", ") || "Ninguno"}</p>       <p><strong> Útiles:</strong> ${utiles} | <strong>❌ No útiles:</strong> ${noUtiles.length}</p>        <p><strong> Porcentaje útil:</strong> ${porcentaje}%</p>`;
+          resultado.innerHTML = `<p> Numeros validos: ${data.validos} </p><p> Numeros utiles: ${data.utiles} </p><p> Numeros no Útiles: ${data.noUtiles} </p><p>Porcentaje: ${data.porcentaje} </p><p></p>`;
+        });
+    
+      };
+
+      reader.readAsText(archivo);
+    });
+
+    // Mostrar el nombre del archivo seleccionado
+    const archivoInput = document.getElementById("archivoTxt");
+    const nombreArchivo = document.getElementById("nombreArchivo");
+
+    archivoInput.addEventListener("change", () => {
+      if (archivoInput.files.length > 0) {
+        nombreArchivo.textContent = `📄 Archivo seleccionado: ${archivoInput.files[0].name}`;
+      } else {
+        nombreArchivo.textContent = "";
+      }
+    });

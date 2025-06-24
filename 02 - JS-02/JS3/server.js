@@ -1,96 +1,64 @@
-import express from 'express';
-import multer from 'multer';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+    // server.js (versión con imports)
+    import express from 'express';
+    import fs from 'fs';
+    import path from 'path';
+    import { fileURLToPath } from 'url';
+    import { dirname } from 'path';
 
-const app = express();
-const PORT = 3000;
+    const app = express();
+    const PORT = 3000;
 
-// Configuración de rutas
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+    // Necesario para obtener __dirname en ES modules
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
 
-// Middleware para leer formularios y archivos públicos
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.json());
+    app.use(express.static(path.join(__dirname, 'public')));
 
-// Ruta raíz: sirve index.html
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+    // Ruta POST para guardar números en datos.txt
+    app.post('/guardar', (req, res) => {
+      const { numeros } = req.body;
+      if (!Array.isArray(numeros) || numeros.length < 10 || numeros.length > 20) {
+        return res.status(400).send('Debe ingresar entre 10 y 20 números');
+      }
 
-// Ruta para guardar números en un archivo .txt
-app.post('/guardar', (req, res) => {
-  const { numeros } = req.body;
-
-  if (!Array.isArray(numeros)) {
-    return res.status(400).send('Datos inválidos');
-  }
-
-  const texto = numeros.join('\n');
-  fs.writeFile('numeros.txt', texto, (err) => {
-    if (err) {
-      console.error('Error al guardar:', err);
-      return res.status(500).send('Error al guardar');
-    }
-    res.send('Archivo numeros.txt guardado correctamente');
-  });
-});
-
-// Configuración para subir archivos .txt
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
-
-// Ruta para procesar archivo subido
-app.post('/subir', upload.single('archivo'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).send('No se envió ningún archivo');
-  }
-
-  const contenido = req.file.buffer.toString();
-  const lineas = contenido.split(/\r?\n/);
-  const numeros = lineas.map(l => l.trim()).filter(l => /^\d+$/.test(l));
-
-  const utiles = [];
-  const noUtiles = [];
-
-  for (let n of numeros) {
-    if (n[0] === n[n.length - 1]) {
-      utiles.push(Number(n));
-    } else {
-      noUtiles.push(Number(n));
-    }
-  }
-
-  utiles.sort((a, b) => a - b);
-  const total = utiles.length + noUtiles.length;
-  const porcentaje = total === 0 ? 0 : (utiles.length / total * 100).toFixed(2);
-
-  const resultado = `
-Números útiles: ${utiles.join(', ')}
-Cantidad útiles: ${utiles.length}
-Cantidad no útiles: ${noUtiles.length}
-Porcentaje útiles: ${porcentaje}%
-`;
-
-  fs.writeFile('resultado.txt', resultado.trim(), (err) => {
-    if (err) {
-      console.error('Error al guardar resultado:', err);
-      return res.status(500).send('Error al guardar resultado');
-    }
-    res.send({
-      utiles,
-      porcentaje,
-      utilesCantidad: utiles.length,
-      noUtilesCantidad: noUtiles.length,
-      mensaje: 'Resultado procesado y guardado correctamente en resultado.txt'
+      const contenido = numeros.join('\n');
+      fs.writeFile('datos.txt', contenido, err => {
+        if (err) return res.status(500).send('Error al guardar');
+        res.send('Archivo guardado correctamente como datos.txt');
+      });
     });
-  });
-});
 
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+    // Ruta POST para procesar contenido de un archivo txt
+    app.post('/procesar', (req, res) => {
+      const { texto } = req.body;
+      if (!texto) return res.status(400).send('Archivo vacío');
+
+      // Separar líneas y convertir a números
+      const lineas = texto.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+      const numeros = lineas.map(Number).filter(n => !isNaN(n));
+
+      // Filtrar números útiles (mismo primer y último dígito)
+      const validos = numeros.filter(n => {
+            const str = n.toString();
+        return str[0] === str[str.length - 1];
+      });
+
+      const utiles = validos.length;
+      const total = numeros.length;
+      const noUtiles = total - utiles;
+      const porcentaje = total > 0 ? ((utiles / total) * 100).toFixed(2) : 0;
+
+      // Guardar resultado en resultados.txt
+      const resultado = `Números válidos:\n${validos.join(', ')}\n\nÚtiles: ${utiles}\nNo útiles: ${noUtiles}\nPorcentaje útil: ${porcentaje}%`;
+
+      fs.writeFile('resultados.txt', resultado, err => {
+        if (err) return res.status(500).send('Error al guardar resultado');
+        res.send({ validos, utiles, noUtiles, porcentaje });
+      });
+    });
+
+    // Iniciar servidor
+    app.listen(PORT, () => {
+      console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    });

@@ -1,42 +1,43 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ingreso y filtrado de números</title>
-  <link rel="stylesheet" href="estilo.css">
-</head>
-<body>
-  <main class="container">
-    <h1>Ingreso de Números</h1>
-    <form id="formIngreso">
-      <input type="number" id="numero" placeholder="Ingresá un número entero" required />
-      <button type="submit">Agregar</button>
-      <p id="mensaje"></p>
-    </form>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Proyecto Números</title>
+      <link rel="stylesheet" href="estilo.css">
+      <style>
 
-    <section id="numerosCargados">
-      <h2>Números ingresados (<span id="contador">0</span>/20)</h2>
-      <ul id="listaNumeros"></ul>
-      <button id="guardarTxt" disabled>Guardar archivo .txt</button>
-    </section>
+      </style>
+    </head>
+    <body>
+      <main>
+        <!-- Sección de ingreso de números -->
+        <section class="tarjeta">
+          <h2>Ingresar Números (10 a 20)</h2>
+          <form id="formNumeros">
+            <input type="number" id="numero" min="1" placeholder="Ingresá un número mayor a 0" required />
+            <div class="botones">
+              <button type="submit">Agregar</button>
+              <button type="button" id="eliminarUltimo">Eliminar Último</button>
+              <button type="button" id="eliminarTodos">Eliminar Todos</button>
+            </div>
+          </form>
+          <div id="numerosIngresados" class="numeros"></div>
+          <button id="guardarTxt" disabled>Guardar archivo</button>
+          <p id="mensaje"></p>
+        </section>
 
-    <hr>
-
-    <h1>Subida y Filtrado de Archivo</h1>
-    <form id="formArchivo">
-      <input type="file" id="archivoTxt" accept=".txt" required />
-      <button type="submit">Subir y filtrar</button>
-      <p id="mensajeArchivo"></p>
-    </form>
-
-    <section id="resultados">
-      <h2>Resultados del filtrado</h2>
-      <div id="resultadoContenido"></div>
-    </section>
-  </main>
-
-  <!-- Script separado -->
-  <script src="funciones.js"></script>
-</body>
-</html>
+        <!-- Sección para subir archivo -->
+        <section class="tarjeta">
+          <h2>Subir archivo .txt</h2>
+          <form id="formArchivo">
+            <input type="file" id="archivoTxt" accept=".txt" required />
+            <p id="nombreArchivo"></p> 
+            <button type="submit">Subir y procesar</button>
+            <div id="resultado"></div> 
+          </form>
+        </section>
+      </main>
+      <script src="funciones.js"></script>
+    </body>
+  </html>
