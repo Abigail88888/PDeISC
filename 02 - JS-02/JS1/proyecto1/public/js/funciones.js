@@ -1,71 +1,104 @@
 // Espera que la página cargue completamente
-document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
+  const formulario = document.getElementById('formulario');
+  const lista = document.getElementById('lista');
 
-  // referencias al formulario y a algunos elementos de la página
-  const f = document.getElementById('formulario'); // el formulario entero
-  const m = document.getElementById('mensaje');    // donde se muestra el mensaje (éxito o error)
-  const l = document.getElementById('lista');      // lista donde se muestran los datos guardados
+  // Inputs individuales
+  const inputFruta = document.getElementById('inputFruta');
+  const inputAmigo = document.getElementById('inputAmigo');
+  const inputNumero = document.getElementById('inputNumero');
 
-  // contenedores donde se agregan los nuevos inputs dinámicos
-  const frutasContainer = document.getElementById('frutas-container');
-  const amigosContainer = document.getElementById('amigos-container');
+  // Botones individuales
+  const btnFruta = document.getElementById('btnFruta');
+  const btnAmigo = document.getElementById('btnAmigo');
+  const btnNumero = document.getElementById('btnNumero');
 
-  // esto es para que se agregue un nuevo input si tocamos el boton
-  document.getElementById('agregar-fruta').onclick = () => {
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.name = 'fruta';
-    input.placeholder = 'Otra fruta';
-    frutasContainer.appendChild(input);
+  // Mensajes por sección
+  const msgFruta = document.getElementById('msgFruta');
+  const msgAmigo = document.getElementById('msgAmigo');
+  const msgNumero = document.getElementById('msgNumero');
+
+  // Arrays vacíos para almacenar los datos localmente
+  const frutas = [];
+  const amigos = [];
+  let numeros = [];
+
+  // Validar y guardar fruta
+  btnFruta.onclick = () => {
+    const valor = inputFruta.value.trim();
+    if (valor && isNaN(valor)) {
+      frutas.push(valor);
+      msgFruta.textContent = `La fruta "${valor}" fue guardada correctamente.`;
+      msgFruta.style.color = 'green';
+      inputFruta.value = '';
+    } else {
+      msgFruta.textContent = 'Ingresa solo nombres de frutas válidos (no números).';
+      msgFruta.style.color = 'red';
+    }
   };
 
-  // lo mismo pero con agregar amigo 
-  document.getElementById('agregar-amigo').onclick = () => {
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.name = 'amigo';
-    input.placeholder = 'Otro amigo';
-    amigosContainer.appendChild(input);
+  // Validar y guardar amigo
+  btnAmigo.onclick = () => {
+    const valor = inputAmigo.value.trim();
+    if (valor && isNaN(valor)) {
+      amigos.push(valor);
+      msgAmigo.textContent = `El amigo "${valor}" fue guardado correctamente.`;
+      msgAmigo.style.color = 'green';
+      inputAmigo.value = '';
+    } else {
+      msgAmigo.textContent = 'Ingresa un nombre válido (no un números).';
+      msgAmigo.style.color = 'red';
+    }
   };
 
-  // cuando se envía el formulario
-  f.onsubmit = e => {
-    e.preventDefault(); // evitamos que se recargue la página
+  // Validar y guardar número
+  btnNumero.onclick = () => {
+    const valor = inputNumero.value.trim();
+    const num = parseFloat(valor);
 
-    // recolecta todas las frutas ingresadas (evita vacíos)
-    const frutas = Array.from(f.querySelectorAll('input[name="fruta"]'))
-      .map(i => i.value.trim())
-      .filter(v => v);
+    if (!isNaN(num) && num > 0) {
+      // Si el array está vacío o el número es mayor al último
+      if (numeros.length === 0 || num > numeros[numeros.length - 1]) {
+        numeros.push(num);
+        msgNumero.textContent = `El número ${num} fue guardado correctamente.`;
+        msgNumero.style.color = 'green';
+        inputNumero.value = '';
+      } else {
+        msgNumero.textContent = 'El número debe ser mayor al último ingresado.';
+        msgNumero.style.color = 'red';
+      }
+    } else {
+      msgNumero.textContent = 'Ingresa un número válido mayor a 0.';
+      msgNumero.style.color = 'red';
+    }
+  };
 
-    // recolecta todos los amigos ingresados
-    const amigos = Array.from(f.querySelectorAll('input[name="amigo"]'))
-      .map(i => i.value.trim())
-      .filter(v => v);
+  // Al enviar el formulario (método POST sin recarga)
+  formulario.onsubmit = e => {
+    e.preventDefault(); // evitar recarga de la página
 
-    // recolecta el número ingresado
-    const numero = f.numero.value.trim();
+    const m = document.getElementById('mensaje');
 
-    //  si no se ingresó nada, muestra error
-    if (frutas.length === 0 && amigos.length === 0 && !numero) {
-      m.textContent = 'Debes ingresar al menos una fruta, amigo o número.';
+    if (frutas.length < 3 || amigos.length < 3 || numeros.length === 0) {
+      m.textContent = 'Debes ingresar al menos 3 frutas, 3 amigos y 1 número.';
       m.style.color = 'red';
       return;
     }
 
-    // Enviar los datos al servidor con fetch y método POST
+    // Enviar los datos al servidor
     fetch('/guardar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ frutas, amigos, numero }) // lo mandamos como objeto JSON
+      body: JSON.stringify({ frutas, amigos, numeros })
     })
-    .then(r => r.json().then(j => ({ ok: r.ok, j }))) // procesa la respuesta
-    .then(r => {
-      m.textContent = r.ok ? r.j.mensaje : r.j.error; // mensaje de éxito o error
-      m.style.color = r.ok ? 'green' : 'red';
+    .then(r => r.json().then(j => ({ ok: r.ok, j })))
+    .then(res => {
+      m.textContent = res.ok ? res.j.mensaje : res.j.error;
+      m.style.color = res.ok ? 'green' : 'red';
 
-      if (r.ok) {
-        f.reset();       // limpia los inputs
-        cargarLista();   // actualiza la lista con lo nuevo
+      if (res.ok) {
+        formulario.reset(); // Limpia inputs visibles
+        cargarLista();
       }
     })
     .catch(() => {
@@ -74,22 +107,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // esta función consulta los datos actuales del servidor y los muestra
+  // Muestra la lista de datos guardados
   function cargarLista() {
     fetch('/datos')
       .then(r => r.json())
       .then(data => {
-        l.innerHTML = `
+        numeros = [...data.numeros]; 
+
+        lista.innerHTML = `
           <li><strong>Frutas:</strong> ${data.frutas.join(', ')}</li>
           <li><strong>Amigos:</strong> ${data.amigos.join(', ')}</li>
           <li><strong>Números:</strong> ${data.numeros.join(', ')}</li>
         `;
       })
       .catch(() => {
-        l.innerHTML = '<li>Error al cargar los datos.</li>';
+        lista.innerHTML = '<li>Error al cargar los datos.</li>';
       });
   }
 
-  // Llamamos a la funcion para mostrar la lista
-  cargarLista();
+  cargarLista(); // y con esto mostrar datos al iniciar
 });

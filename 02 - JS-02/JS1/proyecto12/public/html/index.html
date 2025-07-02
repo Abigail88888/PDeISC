@@ -1,24 +1,36 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ejercicio 12 - Método reduce()</title>
-  <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-  <main class="container">
-    <h1>Ejercicio 12 - Método reduce()</h1>
-    <form id="formReduce">
-      <section class="card">
-        <h2>Calcular el total de ventas</h2>
-        <input type="number" id="ventaInput" placeholder="Ingresa una venta">
-        <button type="button" onclick="agregarVenta()">Agregar venta</button>
-        <p id="totalVentas"></p>
-      </section>
-    </form>
-  </main>
-  
-  <script src="./js/ej12_reduce.js"></script>
-</body>
-</html>
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Ejercicio 12 - reduce()</title>
+      <link rel="stylesheet" href="../css/estilo.css" />
+    </head>
+    <body>
+      <div class="container">
+        <form id="form">
+          <h2>Suma de números</h2>
+          <button type="button" id="btnSuma">Sumar</button>
+          <p id="mensajeSuma" class="mensaje"></p>
+
+          <h2>Multiplicación de enteros</h2>
+          <button type="button" id="btnMultiplica">Multiplicar</button>
+          <p id="mensajeMultiplica" class="mensaje"></p>
+
+          <h2>Total de precios</h2>
+          <button type="button" id="btnTotal">Sumar precios</button>
+          <p id="mensajeTotal" class="mensaje"></p>
+
+          <button type="submit">Reiniciar datos</button>
+          <p id="mensaje" class="mensaje"></p>
+        </form>
+
+        <div class="lista-container">
+          <h2>Resultado de los arrays</h2>
+          <ul id="lista"></ul>
+        </div>
+      </div>
+
+      <script src="../js/funciones.js"></script>
+    </body>
+    </html>

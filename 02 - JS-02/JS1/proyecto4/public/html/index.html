@@ -1,37 +1,45 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unshift()</title>
-  <link rel="stylesheet" href="css/estilo.css">
-</head>
-<body>
-  <main class="container">
-    <h1>Ejercicio 3 - Método unshift()</h1>
-    <form id="formUnshift">
-      <section class="card">
-        <h2>Agregar nuevo elemento al inicio</h2>
-        <input type="text" id="animalUnshiftInput" placeholder="Nuevo animal">
-        <button type="button" onclick="agregarAnimal()">Agregar animal al inicio</button>
-        <ul id="listaAnimalesUnshift"></ul>
-      </section>
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ejercicio 4 - shift()</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form id="form">
+        <!-- Números -->
+        <h2>Números</h2>
+        <input type="number" id="numeroInput" placeholder="Ingresa un número entero" />
+        <button type="button" id="btnAgregarNumero">Agregar número</button>
+        <button type="button" id="btnEliminarNumero">Quitar primero</button>
+        <p id="numeroMensaje" class="mensaje"></p>
 
-      <section class="card">
-        <h2>Agregar nuevo producto al inicio</h2>
-        <input type="text" id="productoUnshiftInput" placeholder="Nuevo producto">
-        <button type="button" onclick="agregarProducto()">Agregar producto al inicio</button>
-        <ul id="listaProductosUnshift"></ul>
-      </section>
+        <!-- Mensajes de chat -->
+        <h2>Mensajes</h2>
+        <input type="text" id="mensajeInput" placeholder="Escribe un mensaje" />
+        <button type="button" id="btnAgregarMensaje">Enviar mensaje</button>
+        <button type="button" id="btnEliminarMensaje">Eliminar primer mensaje</button>
+        <p id="mensajeChat" class="mensaje"></p>
 
-      <section class="card">
-        <h2>Vaciar lista de animales y productos</h2>
-        <button type="button" onclick="vaciarLista()">Vaciar lista</button>
-        <ul id="listaVaciadaUnshift"></ul>
-      </section>
-    </form>
-  </main>
+        <!-- Cola de atención -->
+        <h2>Cola de atención</h2>
+        <input type="text" id="clienteInput" placeholder="Nombre del cliente" />
+        <button type="button" id="btnAgregarCliente">Ingresar cliente</button>
+        <button type="button" id="btnAtenderCliente">Atender primero</button>
+        <p id="mensajeCliente" class="mensaje"></p>
 
-  <script src="js/funciones.js"></script>
-</body>
-</html>
+        <button type="submit">Enviar</button>
+        <p id="mensaje" class="mensaje"></p>
+      </form>
+
+      <div class="lista-container">
+        <h2>Estado actual</h2>
+        <ul id="lista"></ul>
+      </div>
+    </div>
+
+    <script src="js/funciones.js"></script>
+  </body>
+  </html>

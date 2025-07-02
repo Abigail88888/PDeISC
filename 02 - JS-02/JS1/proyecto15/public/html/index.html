@@ -1,19 +1,26 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Decodificación de Mensaje Secreto</title>
-  <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-  <main class="container">
-    <h1>Decodificación de Mensaje Secreto</h1>
-    <p>Haz clic en el siguiente botón para decodificar el mensaje.</p>
-    <button id="decodificarBtn">Decodificar Mensaje</button>
-    <p id="resultado"></p>
-  </main>
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Ejercicio 15 - Secreto</title>
+      <link rel="stylesheet" href="../css/estilo.css" />
+    </head>
+    <body>
+      <div class="container">
+        <form id="form">
+          <h2>Texto Secreto</h2>
+          <input type="text" id="inputTexto" placeholder="Ingrese un texto secreto" />
+          <button type="submit">Codificar</button>
+          <p id="mensaje" class="mensaje"></p>
+        </form>
 
-  <script src="./js/ej15_secreto.js"></script>
-</body>
-</html>
+        <div class="lista-container">
+          <h2>Resultado</h2>
+          <ul id="lista"></ul>
+        </div>
+      </div>
+
+      <script src="../js/funciones.js"></script>
+    </body>
+    </html>

@@ -1,25 +1,37 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ejercicio 14 - Método reduce()</title>
-  <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-  <main class="container">
-    <h1>Ejercicio 14 - Método reduce()</h1>
-    <form id="formReduce">
-      <section class="card">
-        <h2>Sumar números</h2>
-        <input type="number" id="numeroInput" placeholder="Ingresa un número">
-        <button type="button" onclick="agregarNumero()">Agregar número</button>
-        <ul id="listaNumeros"></ul>
-        <p id="resultadoSuma"></p>
-      </section>
-    </form>
-  </main>
-  
-  <script src="./js/ej14_reduce.js"></script>
-</body>
-</html>
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Ejercicio 14 - reverse()</title>
+      <link rel="stylesheet" href="../css/estilo.css" />
+    </head>
+    <body>
+      <div class="container">
+        <form id="form">
+          <h2>Invertir letras</h2>
+          <button type="button" id="btnInvertirLetras">Invertir letras</button>
+          <p id="mensajeLetras" class="mensaje"></p>
+
+          <h2>Invertir números</h2>
+          <button type="button" id="btnInvertirNumeros">Invertir números</button>
+          <p id="mensajeNumeros" class="mensaje"></p>
+
+          <h2>Invertir string</h2>
+          <input type="text" id="inputTexto" placeholder="Ingresa un texto" />
+          <button type="button" id="btnInvertirTexto">Invertir texto</button>
+          <p id="mensajeTexto" class="mensaje"></p>
+
+          <button type="submit">Reiniciar datos</button>
+          <p id="mensaje" class="mensaje"></p>
+        </form>
+
+        <div class="lista-container">
+          <h2>Estado actual</h2>
+          <ul id="lista"></ul>
+        </div>
+      </div>
+
+      <script src="../js/funciones.js"></script>
+    </body>
+    </html>

@@ -1,36 +1,37 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ejercicio 6 - splice()</title>
-  <link rel="stylesheet" href="./css/style.css" />
-</head>
-<body>
-  <main class="container">
-    <h1>Ejercicio 6 - Método splice()</h1>
-    
-    <section class="card">
-      <h2>Lista de elementos</h2>
-      <ul id="listaElementos"></ul>
-      <button onclick="mostrarElementos()">Mostrar elementos iniciales</button>
-    </section>
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Ejercicio 6 - slice()</title>
+      <link rel="stylesheet" href="css/estilo.css" />
+    </head>
+    <body>
+      <div class="container">
+        <form id="form">
+          <!-- Números -->
+          <h2>Números</h2>
+          <button type="button" id="btnCopiarNumeros">Copiar primeros 3 números</button>
 
-    <section class="card">
-      <h2>Eliminar elementos</h2>
-      <input type="number" id="indiceEliminar" placeholder="Índice a eliminar" />
-      <input type="number" id="cantidadEliminar" placeholder="Cantidad a eliminar" />
-      <button onclick="eliminarElementos()">Eliminar</button>
-    </section>
+          <!-- Películas -->
+          <h2>Películas</h2>
+          <button type="button" id="btnCopiarPeliculas">Copiar desde posición 2 a 4</button>
 
-    <section class="card">
-      <h2>Insertar elementos</h2>
-      <input type="number" id="indiceInsertar" placeholder="Índice para insertar" />
-      <input type="text" id="elementoInsertar" placeholder="Elemento a insertar" />
-      <button onclick="insertarElemento()">Insertar</button>
-    </section>
-  </main>
+          <!-- Golosinas -->
+          <h2>Golosinas</h2>
+          <button type="button" id="btnCopiarGolosinas">Copiar últimos 3 elementos</button>
 
-  <script src="./js/ej6_splice.js"></script>
-</body>
-</html>
+          <!-- Botón de reinicio -->
+          <button type="submit">Reiniciar arrays</button>
+          <p id="mensaje" class="mensaje"></p>
+        </form>
+
+        <div class="lista-container">
+          <h2>Estado actual</h2>
+          <ul id="lista"></ul>
+        </div>
+      </div>
+
+      <script src="js/funciones.js"></script>
+    </body>
+    </html>

@@ -1,15 +1,22 @@
-import express from 'express';
-import path from 'path';
+    import express from 'express';
+    import path from 'path';
+    import { fileURLToPath } from 'url';
 
-const app = express();
-const PORT = process.env.PORT || 3000;
+    const app = express();
+    const port = 3000;
 
-app.use(express.static(path.join(process.cwd(), 'public')));
+    // __dirname para ESModules
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(process.cwd(), 'views', 'index.html'));
-});
+    // Middleware
+    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.json());
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
-});
+    app.get('/', (_req, res) => {
+      res.sendFile(path.join(__dirname, 'public', 'html', 'index.html'));
+    });
+
+    app.listen(port, () => {
+      console.log(`Servidor corriendo en http://localhost:${port}`);
+    });

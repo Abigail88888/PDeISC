@@ -1,24 +1,37 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ejercicio 7 - filter()</title>
-  <link rel="stylesheet" href="../public/css/style.css" />
-</head>
-<body>
-  <main class="container">
-    <h1>Filtrar edades mayores a 18</h1>
-    <form id="formFilter">
-      <input type="number" id="edadInput" placeholder="Ingresá una edad" />
-      <button type="button" onclick="agregarEdad()">Agregar edad</button>
-      <button type="submit">Filtrar mayores de 18</button>
-    </form>
-    <ul id="listaEdades"></ul>
-    <h2>Mayores de edad:</h2>
-    <ul id="listaMayores"></ul>
-  </main>
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Ejercicio 7 - indexOf()</title>
+      <link rel="stylesheet" href="css/estilo.css" />
+    </head>
+    <body>
+      <div class="container">
+        <form id="form">
+          <!-- Buscar "perro" -->
+          <h2>Buscar palabra "perro"</h2>
+          <button type="button" id="btnBuscarPerro">Buscar en animales</button>
 
-  <script src="../public/js/ej7_filter.js"></script>
-</body>
-</html>
+          <!-- Buscar número -->
+          <h2>Buscar número 50</h2>
+          <button type="button" id="btnBuscarNumero">Buscar en números</button>
+
+          <!-- Buscar ciudad -->
+          <h2>Buscar ciudad "Madrid"</h2>
+          <button type="button" id="btnBuscarMadrid">Buscar en ciudades</button>
+
+          <!-- Mensaje general -->
+          <p id="mensaje" class="mensaje"></p>
+        </form>
+
+        <!-- Lista de estado actual -->
+        <div class="lista-container">
+          <h2>Arrays</h2>
+          <ul id="lista"></ul>
+        </div>
+      </div>
+
+      <script src="js/funciones.js"></script>
+    </body>
+    </html>

@@ -2,9 +2,7 @@
     const path = require('path');
 
     const app = express();
-    const PORT = 3005;
-
-    let letras = ['A', 'B', 'C', 'D', 'E']; // array base para pruebas
+    const PORT = 3000;
 
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
@@ -15,41 +13,36 @@
     });
 
     // eliminar 2 letras desde posición 1
-    app.post('/eliminar', (_req, res) => {
-      if (letras.length >= 3) {
-        letras.splice(1, 2);
-        return res.json({ letras });
-     }    else {
+    app.post('/eliminar', (req, res) => {
+      const { letras } = req.body;
+      if (!Array.isArray(letras) || letras.length < 3) {
         return res.status(400).json({ error: 'No hay suficientes letras para eliminar.' });
       }
+      letras.splice(1, 2);
+      res.json({ letras });
     });
 
     // insertar sin eliminar en la posición 1
     app.post('/insertar', (req, res) => {
-      const { letra } = req.body;
-      if (!letra || typeof letra !== 'string') {
-        return res.status(400).json({ error: 'Letra inválida.' });
+      const { letra, letras } = req.body;
+      if (!letra || typeof letra !== 'string' || !Array.isArray(letras)) {
+        return res.status(400).json({ error: 'Datos inválidos.' });
       }
       letras.splice(1, 0, letra.toUpperCase());
-      return res.json({ letras });
+      res.json({ letras });
     });
 
-    // para reemplazar desde una posición con nuevas letras
+    // reemplazar desde una posición
     app.post('/reemplazar', (req, res) => {
-      const { pos, nuevas } = req.body;
+      const { pos, nuevas, letras } = req.body;
       const index = parseInt(pos);
-      if (isNaN(index) || index < 0 || !Array.isArray(nuevas) || nuevas.length < 1) {
+      if (isNaN(index) || index < 0 || !Array.isArray(nuevas) || !Array.isArray(letras)) {
         return res.status(400).json({ error: 'Datos inválidos.' });
       }
       letras.splice(index, nuevas.length, ...nuevas.map(l => l.toUpperCase()));
-      return res.json({ letras });
-    });
-
-    // array nuevo
-    app.get('/letras', (_req, res) => {
       res.json({ letras });
     });
 
     app.listen(PORT, () => {
-      console.log(`Proyecto 5 corriendo en http://localhost:${PORT}`);
+      console.log(`Servidor corriendo en http://localhost:${PORT}`);
     });

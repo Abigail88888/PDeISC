@@ -1,72 +1,70 @@
-   document.addEventListener('DOMContentLoaded', () => {
-
-      // Obtener referencias a los elementos HTML donde se mostrará la lista y los errores
+    document.addEventListener('DOMContentLoaded', () => {
       const lista = document.getElementById('listaLetras');
       const error = document.getElementById('mensajeError');
 
-      // Función que recibe los datos (array de letras) y los muestra en pantalla
-      const render = (data) => {
-        lista.innerHTML = '';       // Limpia la lista anterior
-        error.textContent = '';     // Limpia cualquier mensaje de error
+      // Array local de letras
+      let letras = ['A', 'B', 'C', 'D', 'E', 'F'];
 
-        data.letras.forEach(l => {  // Por cada letra recibida del servidor
-          const li = document.createElement('li'); 
-          li.textContent = l;       // Le pone el texto de la letra
-          lista.appendChild(li);    // Lo agrega a la lista en el HTML
+      // Muestra las letras en la lista
+      const cargarLista = (data) => {
+        lista.innerHTML = '';
+        error.textContent = '';
+        data.letras.forEach(l => {
+          const li = document.createElement('li');
+          li.textContent = l;
+          lista.appendChild(li);
         });
       };
 
-      // Función que muestra un mensaje de error
+      // Muestra un mensaje de error
       const mostrarError = (msg) => {
-        error.textContent = msg; 
+        error.textContent = msg;
       };
 
-      // Botón Eliminar que envía una petición al servidor para eliminar letras
+      // Enviar datos y actualizar array
+      const postear = (url, body) => {
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        })
+          .then(res => {
+            if (!res.ok) throw new Error('Error en la operación');
+            return res.json();
+          })
+          .then(data => {
+            letras = data.letras;
+            cargarLista(data);
+          })
+          .catch(() => mostrarError('No se pudo procesar la solicitud.'));
+      };
+
+      // Botón eliminar 2 desde posición 1
       document.getElementById('btnEliminar').addEventListener('click', () => {
-        fetch('/eliminar', { method: 'POST' }) // Hace una petición POST a la ruta /eliminar
-          .then(res => res.json())             // Convierte la respuesta a JSON
-          .then(render)                        // Muestra la lista modificada
-          .catch(() => mostrarError('No se pudo eliminar.')); // Si falla, muestra error
+        if (letras.length < 3) return mostrarError('Se necesitan al menos 3 letras.');
+        postear('/eliminar', { letras });
       });
 
-      // Botón "Insertar": inserta una letra al array del servidor
+      // Botón insertar en posición 1
       document.getElementById('btnInsertar').addEventListener('click', () => {
-        const letra = document.getElementById('inputInsertar').value.trim(); // Toma el valor ingresado y lo limpia
-        if (!letra) return mostrarError('Debe ingresar una letra.');         // Si está vacío, muestra error
-
-        fetch('/insertar', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ letra }) // envía la letra como JSON
-        })
-          .then(res => res.json())   
-          .then(render)              
-          .catch(() => mostrarError('No se pudo insertar.')); 
+        const letra = document.getElementById('inputInsertar').value.trim();
+        if (!/^[a-zA-Z]$/.test(letra)) return mostrarError('Ingrese una única letra válida.');
+        postear('/insertar', { letra, letras });
       });
 
-      // Botón "Reemplazar": reemplaza una o más letras a partir de una posición
+      // Botón reemplazar
       document.getElementById('btnReemplazar').addEventListener('click', () => {
-        const pos = document.getElementById('inputPosicion').value; // Toma la posición ingresada
-        const nuevas = document.getElementById('inputNuevas')       // Toma las nuevas letras
+        const pos = document.getElementById('inputPosicion').value;
+        const nuevas = document.getElementById('inputNuevas')
           .value
-          .split(',')           // Las separa por comas
-          .map(l => l.trim())   // Quita espacios
-          .filter(Boolean);     // Elimina vacíos
+          .split(',')
+          .map(l => l.trim())
+          .filter(Boolean);
 
-        if (nuevas.length === 0) return mostrarError('Ingrese al menos una letra para reemplazar.');
-
-        fetch('/reemplazar', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ pos, nuevas }) // Envía posición y nuevas letras
-        })
-          .then(res => res.json())  // Convierte respuesta a JSON
-          .then(render)             // Muestra nueva lista
-          .catch(() => mostrarError('No se pudo reemplazar.')); // Si hay error, lo muestra
+        if (isNaN(pos) || nuevas.length === 0) return mostrarError('Complete los campos correctamente.');
+        postear('/reemplazar', { pos, nuevas, letras });
       });
 
-      // muestra el estado actual del array
-      fetch('/letras')
-        .then(res => res.json())
-        .then(render);
+      // Cargar lista inicial
+      cargarLista({ letras });
     });

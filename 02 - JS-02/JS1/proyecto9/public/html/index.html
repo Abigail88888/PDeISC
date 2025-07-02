@@ -1,24 +1,38 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ejercicio 9 - Método some()</title>
-  <link rel="stylesheet" href="./css/style.css">
-</head>
-<body>
-  <main class="container">
-    <h1>Ejercicio 9 - Método some()</h1>
-    <form id="formSome">
-      <section class="card">
-        <h2>Comprobación de Condición</h2>
-        <input type="number" id="numberInput" placeholder="Ingresa un número para comprobar">
-        <button type="button" onclick="verificarNumero()">Verificar</button>
-        <p id="resultado"></p>
-      </section>
-    </form>
-  </main>
-  
-  <script src="./js/ej9_some.js"></script>
-</body>
-</html>
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ejercicio 9 - forEach()</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form id="form">
+        <!-- Saludo a nombres -->
+        <h2>Saludar nombres</h2>
+        <button type="button" id="btnSaludarNombres">Mostrar saludos</button>
+        <p id="mensajeNombres" class="mensaje"></p>
+
+        <!-- Doblar números -->
+        <h2>Doblar números</h2>
+        <button type="button" id="btnDoblarNumeros">Mostrar números doblados</button>
+        <p id="mensajeNumeros" class="mensaje"></p>
+
+        <!-- Mostrar objetos nombre y edad -->
+        <h2>Mostrar personas (nombre y edad)</h2>
+        <button type="button" id="btnMostrarPersonas">Mostrar personas</button>
+        <p id="mensajePersonas" class="mensaje"></p>
+
+        <p id="mensaje" class="mensaje"></p>
+      </form>
+
+      <div class="lista-container">
+        <h2>Estado actual</h2>
+        <ul id="lista"></ul>
+      </div>
+    </div>
+
+    <script src="js/funciones.js"></script>
+  </body>
+  </html>

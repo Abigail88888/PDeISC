@@ -1,27 +1,87 @@
-const numeros = [];
+  document.addEventListener('DOMContentLoaded', () => {
+    const lista = document.getElementById('lista');
+    const mensaje = document.getElementById('mensaje');
+    const mensajeLetras = document.getElementById('mensajeLetras');
+    const mensajeNumeros = document.getElementById('mensajeNumeros');
+    const mensajeTexto = document.getElementById('mensajeTexto');
 
-function agregarNumero() {
-  const numeroInput = document.getElementById('numeroInput').value;
-  const listaNumeros = document.getElementById('listaNumeros');
-  const resultadoSuma = document.getElementById('resultadoSuma');
+    // Función para renderizar los datos actuales
+    const renderizar = (data) => {
+      lista.innerHTML = '';
+      if (data.letras.length) {
+        lista.innerHTML += `<li><strong>Letras:</strong> ${data.letras.join(', ')}</li>`;
+      }
+      if (data.numeros.length) {
+        lista.innerHTML += `<li><strong>Números:</strong> ${data.numeros.join(', ')}</li>`;
+      }
+      if (data.textoInvertido) {
+        lista.innerHTML += `<li><strong>Texto invertido:</strong> ${data.textoInvertido}</li>`;
+      }
+    };
 
-  if (numeroInput === "") {
-    resultadoSuma.textContent = "Por favor, ingresa un número.";
-    return;
-  }
+    // Mostrar estado inicial
+    fetch('/datos')
+      .then(res => res.json())
+      .then(renderizar);
 
-  const numero = parseInt(numeroInput);
-  numeros.push(numero);
+    // Invertir letras
+    document.getElementById('btnInvertirLetras').addEventListener('click', () => {
+      fetch('/invertir-letras', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          renderizar(data);
+          mensajeLetras.textContent = 'Letras invertidas correctamente.';
+        });
+    });
 
-  // Mostrar los números ingresados
-  listaNumeros.innerHTML = "";
-  numeros.forEach(numero => {
-    const li = document.createElement('li');
-    li.textContent = numero;
-    listaNumeros.appendChild(li);
+    // Invertir números
+    document.getElementById('btnInvertirNumeros').addEventListener('click', () => {
+      fetch('/invertir-numeros', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          renderizar(data);
+          mensajeNumeros.textContent = 'Números invertidos correctamente.';
+        });
+    });
+
+    // Invertir texto ingresado (solo letras permitidas)
+    document.getElementById('btnInvertirTexto').addEventListener('click', () => {
+      const texto = document.getElementById('inputTexto').value.trim();
+
+      // Validación: solo letras (mayúsculas o minúsculas)
+      if (!texto) {
+        mensajeTexto.textContent = 'Debes ingresar un texto.';
+        return;
+      }
+
+      if (!/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]+$/.test(texto)) {
+        mensajeTexto.textContent = 'Solo se permiten letras (sin números ni símbolos).';
+        return;
+      }
+
+      fetch('/invertir-texto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ texto })
+      })
+        .then(res => res.json())
+        .then(data => {
+          renderizar(data);
+          mensajeTexto.textContent = 'Texto invertido correctamente.';
+        });
+    });
+
+    // Reiniciar los datos al estado original
+    document.getElementById('form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      fetch('/reiniciar', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          renderizar(data);
+          mensaje.textContent = 'Datos reiniciados correctamente.';
+          mensajeLetras.textContent = '';
+          mensajeNumeros.textContent = '';
+          mensajeTexto.textContent = '';
+        });
+    });
   });
-
-  // Sumar los números usando reduce()
-  const sumaTotal = numeros.reduce((acumulador, num) => acumulador + num, 0);
-  resultadoSuma.textContent = `Suma total: ${sumaTotal}`;
-}
