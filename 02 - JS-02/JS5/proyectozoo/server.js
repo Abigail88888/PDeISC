@@ -9,6 +9,11 @@
     // Servir archivos estáticos desde /public
     app.use(express.static(path.join(__dirname, 'public')));
 
+    // Ruta raíz: muestra el index
+    app.get('/', (req, res) => {
+      res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    });
+
     // Levantar servidor en puerto 3000
     const PORT = 3000;
     app.listen(PORT, () => {

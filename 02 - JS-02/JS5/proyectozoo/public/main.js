@@ -4,7 +4,7 @@ import {
   contarFelinosEntreJaulas,
   buscarJaula4,
   generarTabla
-} from './funciones.js';
+} from './funciones.js'; // Aunque estas funciones no se usan directamente aquí, se mantienen las importaciones si fueran necesarias para otras validaciones o lógica del formulario
 
 const animales = JSON.parse(localStorage.getItem('zoo')) || [];
 
@@ -14,14 +14,14 @@ const otroTipoInput = document.getElementById('otroTipo');
 const otroTipoContainer = document.getElementById('otroTipoContainer');
 const mensajes = document.getElementById('mensajes');
 
-// ✅ Mostrar mensaje con estilo
+// Mostrar mensaje con estilo
 function mostrarMensaje(texto, tipo = 'info') {
   mensajes.innerHTML = `<p class="${tipo}">${texto}</p>`;
   mensajes.scrollIntoView({ behavior: 'smooth', block: 'center' });
   setTimeout(() => (mensajes.innerHTML = ''), 6000);
 }
 
-// ✅ Mostrar campo si eligen "Otro"
+// Mostrar campo si eligen "Otro"
 tipoSelect.addEventListener('change', () => {
   if (tipoSelect.value === 'otro') {
     otroTipoContainer.style.display = 'block';
@@ -32,7 +32,7 @@ tipoSelect.addEventListener('change', () => {
   }
 });
 
-// ✅ Guardar animal
+// Guardar animal
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -73,15 +73,15 @@ form.addEventListener('submit', (e) => {
   }
 
   // Guardamos un objeto plano, no instancia
-const animal = {
-  IdAnimal: id,
-  nombre,
-  JaulaNumero: jaula,
-  IdTypeAnimal: tipo,
-  peso
-};
+  const animal = {
+    IdAnimal: id,
+    nombre,
+    JaulaNumero: jaula,
+    IdTypeAnimal: tipo,
+    peso
+  };
 
-animales.push(animal);
+  animales.push(animal);
 
   localStorage.setItem('zoo', JSON.stringify(animales));
 
