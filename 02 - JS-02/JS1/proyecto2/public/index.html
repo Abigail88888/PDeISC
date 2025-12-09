@@ -1,0 +1,44 @@
+  <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Ejercicio 2 - pop()</title>
+      <link rel="stylesheet" href="estilo.css" />
+    </head>
+    <body>
+      <div class="container">
+        <form id="formPop">
+          <!-- Animales -->
+          <h2>Animales</h2>
+          <input type="text" id="animalInput" placeholder="Ingresá un animal" />
+          <button type="button" id="btnAgregarAnimal">Agregar animal</button>
+          <button type="button" id="btnEliminarAnimal">Eliminar último</button>
+          <p id="animalEliminado"></p>
+
+          <!-- Compras -->
+          <h2>Lista de compras</h2>
+          <input type="text" id="productoInput" placeholder="Producto" />
+          <button type="button" id="btnAgregarProducto">Agregar producto</button>
+          <button type="button" id="btnEliminarProducto">Quitar último</button>
+          <p id="productoEliminado"></p>
+
+          <!-- Vaciar array -->
+          <h2>Vaciar array con pop()</h2>
+            <button type="button" id="btnVaciar">Vaciar lista</button>
+
+          <!-- Botón para mostrar todos los resultados -->
+          <button type="submit" id="btnEnviar">Enviar datos</button>
+          <p id="mensaje" class="mensaje"></p>
+        </form>
+
+        <!-- Lista de resultados -->
+        <div class="lista-container">
+          <h2>Datos guardados</h2>
+          <ul id="lista"></ul>
+        </div>
+      </div>
+
+      <script src="funciones.js"></script>
+    </body>
+  </html>

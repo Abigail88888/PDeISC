@@ -1,0 +1,91 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  /* Contenedor principal */
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  /* Formulario y lista de datos */
+  form,
+  .lista-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    flex: 1 1 300px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Encabezados */
+  form h2,
+  .lista-container h2 {
+    margin-top: 0;
+    font-size: 1.4em;
+    color: #333;
+  }
+  
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  /* Botones */
+  button {
+    margin-top: 15px;
+    padding: 12px;
+    width: 100%;
+    background-color: #0c3c78;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #062851;
+  }
+  
+  /* Mensajes */
+  .mensaje {
+    margin-top: 10px;
+    color: green;
+  }
+  
+  /* Tabla IVA */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  th {
+    background-color: #f4f4f4;
+  }
+  
+  @media (max-width: 600px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    button {
+      width: 100%;
+    }
+  }
+  

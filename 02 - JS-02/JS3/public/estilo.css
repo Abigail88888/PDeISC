@@ -1,0 +1,129 @@
+/* Estilos generales */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f2f4f8; /* Fondo suave */
+  margin: 0;
+  padding: 2rem;
+  color: #333; /* Texto principal */
+}
+
+main {
+  display: grid;
+  gap: 2rem;
+}
+
+/* Tarjeta blanca con sombra */
+.tarjeta {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Input de número y archivo */
+input[type="number"],
+input[type="file"] {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin: 0.5rem 0 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  appearance: none;
+  -moz-appearance: textfield;
+}
+
+/* Oculta flechitas de input number */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Botones estilizados */
+.botones button,
+button[type="submit"],
+#guardarTxt {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  margin: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Botones desactivados */
+button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+/* Agrupa los botones */
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Estilo para los números mostrados */
+.numeros div {
+  padding: 0.25rem 0;
+  font-size: 1.2rem;
+}
+
+/* Zona de drop visual para subir archivo */
+.drop {
+  display: block;
+  padding: 1rem;
+  margin: 1rem 0;
+  border: 2px dashed #ccc;
+  text-align: center;
+  border-radius: 0.5rem;
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+/* Mensajes del resultado */
+#resultado p,
+#resultado h3 {
+  margin: 0.5rem 0;
+}
+
+input[type="file"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background-color: #fafafa;
+  cursor: pointer;
+  width: 100%;
+}
+
+#nombreArchivo {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* Estilo responsive para celulares */
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  .botones {
+    flex-direction: column;
+  }
+}

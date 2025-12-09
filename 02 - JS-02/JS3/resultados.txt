@@ -1,0 +1,6 @@
+Números válidos:
+2, 3, 4, 7, 9, 232, 505, 606
+
+Útiles: 8
+No útiles: 2
+Porcentaje útil: 80.00%

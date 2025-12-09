@@ -1,0 +1,108 @@
+/* Estilo general del body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 20px;
+}
+
+/* Contenedor principal */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Formulario y lista de datos */
+form,
+.lista-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  flex: 1 1 400px; /* se agranda más que antes */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+form h2,
+.lista-container h2 {
+  margin-top: 0;
+  font-size: 1.6em;
+  color: #333;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+}
+
+/* Botones */
+button {
+  margin-top: 10px;
+  padding: 12px;
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Botones individuales */
+button[type="button"] {
+  background-color: #2196F3;
+}
+
+button[type="button"]:hover {
+  background-color: #1976D2;
+}
+
+/* Mensajes */
+.mensaje {
+  margin-top: 8px;
+  font-size: 0.95em;
+  color: #d32f2f;
+}
+
+/* Lista de resultados */
+.lista-container ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+.lista-container li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  word-break: break-word;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+
+  form,
+  .lista-container {
+    flex: 1 1 100%;
+  }
+}

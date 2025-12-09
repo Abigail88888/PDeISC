@@ -1,0 +1,71 @@
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    form,
+    .lista-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      flex: 1 1 300px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    form h2,
+    .lista-container h2 {
+      margin-top: 0;
+      font-size: 1.4em;
+      color: #333;
+    }
+
+    input,
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #003366;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #002244;
+    }
+
+    .mensaje {
+      margin-top: 8px;
+      color: green;
+    }
+
+    .lista-container ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .lista-container p {
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        flex-direction: column;
+      }
+    }

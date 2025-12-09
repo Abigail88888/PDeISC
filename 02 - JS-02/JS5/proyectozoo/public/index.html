@@ -1,0 +1,53 @@
+    <!DOCTYPE html>
+        <html lang="es">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Zoológico</title>
+          <link rel="stylesheet" href="estilo.css" />
+        </head>
+
+        <body>
+          <main>
+            <div class="titulo-zoo">
+              <h1>Zoológico de MDQ - Registro de animales</h1>
+            </div>
+            <div class="tarjeta">
+              <form id="animalForm">
+                <label for="id">ID del animal</label>
+                <input type="text" inputmode="numeric" id="id" placeholder="Ej: 101" required />
+
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" placeholder="Ej: León" required />
+
+                <label for="jaula">Número de jaula</label>
+                <input type="text" inputmode="numeric" id="jaula" placeholder="Ej: 5" required />
+
+                <label for="tipo">Tipo de animal</label>
+                <select id="tipo" required>
+                  <option value="">Seleccionar tipo</option>
+                  <option value="1">Felino</option>
+                  <option value="2">Ave</option>
+                  <option value="3">Reptil</option>
+                  <option value="otro">Otro</option>
+                </select>
+
+                <div id="otroTipoContainer" style="display:none;">
+                  <label for="otroTipo">Especifique el tipo</label>
+                  <input type="text" id="otroTipo" placeholder="Ej: Anfibio" />
+                </div>
+
+                <label for="peso">Peso (kg)</label>
+                <input type="text" inputmode="decimal" id="peso" placeholder="Ej: 2.5" required />
+
+                <button type="submit">Guardar animal</button>
+                <button type="button" id="mostrarBtn">Mostrar resultados</button>
+              </form>
+
+              <div id="mensajes"></div>
+            </div>
+          </main>
+
+          <script type="module" src="main.js"></script>
+        </body>
+      </html>

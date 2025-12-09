@@ -1,0 +1,141 @@
+    body.pagina-resultados {
+      background-color: rgba(0, 0, 0, 0.85);
+      color: #E0E0E0;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2.5rem;
+      min-height: 100vh;
+      box-sizing: border-box;
+      display: block;
+    }
+
+    .pagina-resultados-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    h1 {
+      color: white;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    h2, h3 {
+      color: #ADD8E6;
+      margin-top: 2rem;
+      text-align: left;
+      padding-left: 0.5rem;
+    }
+
+    p {
+        text-align: left;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #F0F8FF;
+        padding-left: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* --- SECCIÓN CLAVE PARA EL SCROLL DE LA TABLA (AJUSTADA) --- */
+    .tabla-resultados {
+        width: 100%;
+        margin-top: 20px;
+        display: block; /* Mantenemos block para que overflow funcione bien */
+        overflow-x: auto; /* Permitir scroll horizontal cuando el contenido desborda */
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px; /* Espacio para la barra de scroll */
+        box-sizing: border-box;
+    }
+
+    table {
+      /* ¡CRÍTICO! Usamos min-content para que la tabla ocupe solo el espacio necesario.
+        Si el contenido es más ancho que el padre, forzará el scroll.
+        Si no funciona, podrías volver a un min-width muy grande como 750px o 800px.
+        El valor exacto de 'max-content' (o similar) hace que la tabla ocupe
+        el ancho máximo que sus celdas requieren sin romperse. */
+      width: max-content; /* Intenta con max-content primero */
+      min-width: 100%; /* Asegura que la tabla ocupe al menos el 100% del contenedor visible */
+
+      border-collapse: collapse;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      color: #E0E0E0;
+      margin: 0 auto; /* Para centrar la tabla horizontalmente dentro de su contenedor */
+    }
+
+    th, td {
+      padding: 12px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      font-size: 1rem;
+      color: #E0E0E0;
+      white-space: nowrap; /* Imprescindible para que el texto no salte de línea y las columnas sean anchas */
+    }
+
+    th {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      font-weight: bold;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    tbody tr:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+    /* --- FIN SECCIÓN CLAVE --- */
+
+
+    button {
+      margin-top: 2.5rem;
+      padding: 12px 22px;
+      background-color: #6A5ACD;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    button:hover {
+      background-color: #483D8B;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive para celulares */
+    @media (max-width: 600px) {
+      body.pagina-resultados {
+        padding: 1.2rem;
+      }
+
+      h1 {
+          font-size: 2rem;
+      }
+
+      h2, h3, p {
+        text-align: center;
+        padding-left: 0;
+      }
+
+      table {
+        font-size: 0.9rem;
+        /* En móvil, 'width: max-content' se combinará con 'min-width: 100%'
+          para asegurar que si la tabla es más pequeña que la pantalla, ocupe el 100%,
+          pero si es más grande, mantenga su tamaño real y el scroll aparezca. */
+      }
+
+      th, td {
+        padding: 8px;
+      }
+    }

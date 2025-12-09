@@ -1,0 +1,44 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head> <!--Hola!! Fijate lo de las sections y demas compara
+      con el otro html y fijate que concuerden las cosas con las
+      funciones-->
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Ejercicio 5 - splice()</title>
+      <link rel="stylesheet" href="css/estilo.css" />
+    </head>
+    <body>
+      <div class="container">
+        <form id="form">
+        <h1>Ejercicio 5 - Método splice()</h1>
+
+        <div class="form-container">
+          <section class="card">
+            <h2>Eliminar desde posición 1</h2>
+            <button id="btnEliminar">Eliminar</button>
+          </section>
+
+          <section class="card">
+            <h2>Insertar en posición 1</h2>
+            <input type="text" id="inputInsertar" placeholder="Letra" maxlength="1" />
+            <button id="btnInsertar">Insertar</button>
+          </section>
+
+          <section class="card">
+            <h2>Reemplazar desde una posición</h2>
+            <input type="number" id="inputPosicion" placeholder="Posición" min="0" />
+            <input type="text" id="inputNuevas" placeholder="Letras separadas por coma (ej: X,Y)" />
+            <button id="btnReemplazar">Reemplazar</button>
+          </section>
+        </form>
+      </div>
+      <div class="lista-container">
+          <h2>Resultado</h2>
+          <ul id="listaLetras"></ul>
+          <p id="mensajeError" class="error"></p>
+      </div>
+      
+      <script src="js/funciones.js"></script>
+    </body>
+    </html>

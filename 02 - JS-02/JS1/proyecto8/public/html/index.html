@@ -1,0 +1,39 @@
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Ejercicio 8 - includes()</title>
+      <link rel="stylesheet" href="css/estilo.css" />
+    </head>
+    <body>
+      <div class="container">
+        <form id="form">
+          <!-- Verificar si contiene "admin" -->
+          <h2>¿Contiene "admin"?</h2>
+          <button type="button" id="btnVerificarAdmin">Verificar</button>
+
+          <!-- Verificar si contiene "verde" -->
+          <h2>¿Existe el color "verde"?</h2>
+          <button type="button" id="btnVerificarVerde">Verificar</button>
+
+          <!-- Agregar número si no existe -->
+          <h2>Agregar número si no existe</h2>
+          <input type="number" id="inputNumero" placeholder="Ingrese un número positivo" />
+          <button type="button" id="btnAgregarNumero">Agregar</button>
+          <p id="mensajeNumero" class="mensaje"></p>
+
+          <!-- Mensaje general -->
+          <p id="mensaje" class="mensaje"></p>
+        </form>
+
+        <!-- Lista de estado actual -->
+        <div class="lista-container">
+          <h2>Estado actual</h2>
+          <ul id="lista"></ul>
+        </div>
+      </div>
+
+      <script src="js/funciones.js"></script>
+    </body>
+    </html>

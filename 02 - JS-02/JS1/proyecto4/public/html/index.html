@@ -1,0 +1,45 @@
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Ejercicio 4 - shift()</title>
+    <link rel="stylesheet" href="css/estilo.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form id="form">
+        <!-- Números -->
+        <h2>Números</h2>
+        <input type="number" id="numeroInput" placeholder="Ingresa un número entero" />
+        <button type="button" id="btnAgregarNumero">Agregar número</button>
+        <button type="button" id="btnEliminarNumero">Quitar primero</button>
+        <p id="numeroMensaje" class="mensaje"></p>
+
+        <!-- Mensajes de chat -->
+        <h2>Mensajes</h2>
+        <input type="text" id="mensajeInput" placeholder="Escribe un mensaje" />
+        <button type="button" id="btnAgregarMensaje">Enviar mensaje</button>
+        <button type="button" id="btnEliminarMensaje">Eliminar primer mensaje</button>
+        <p id="mensajeChat" class="mensaje"></p>
+
+        <!-- Cola de atención -->
+        <h2>Cola de atención</h2>
+        <input type="text" id="clienteInput" placeholder="Nombre del cliente" />
+        <button type="button" id="btnAgregarCliente">Ingresar cliente</button>
+        <button type="button" id="btnAtenderCliente">Atender primero</button>
+        <p id="mensajeCliente" class="mensaje"></p>
+
+        <button type="submit">Enviar</button>
+        <p id="mensaje" class="mensaje"></p>
+      </form>
+
+      <div class="lista-container">
+        <h2>Estado actual</h2>
+        <ul id="lista"></ul>
+      </div>
+    </div>
+
+    <script src="js/funciones.js"></script>
+  </body>
+  </html>
