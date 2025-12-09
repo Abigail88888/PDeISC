@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <!--Solo en este caso por ser varias paginas incluyo el body    y el script en el mismo HTML sino siempre lo hago de manera   externa-->
+      <title>Doble Click</title>
+      <style>
+        body { font-family: sans-serif; text-align: center; }
+        button { padding: 10px; font-size: 16px; }
+      </style>
+    </head>
+    <body>
+      <h2>Tipo de evento: Doble Click</h2>
+      <button id="btnDblClick">Doble clic aquí</button>
+      <p id="mensaje"></p>
+    
+      <script>
+        document.getElementById('btnDblClick').addEventListener   ('dblclick', () => {
+          document.getElementById('mensaje').textContent = '¡Doble    click detectado!';
+        });
+      </script>
+    </body>
+  </html>

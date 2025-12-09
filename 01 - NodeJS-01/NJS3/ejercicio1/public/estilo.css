@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 50px;
+}
+
+h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+#botones {
+  margin-bottom: 30px;
+}
+
+#botones button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#contenido {
+  margin-top: 30px;
+}
+
+#contenido img {
+  width: 300px;
+  transition: width 0.5s ease;
+  margin-top: 20px;
+}

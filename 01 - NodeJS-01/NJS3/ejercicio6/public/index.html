@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+      <head>
+        <meta charset="UTF-8">
+        <title>Formulario de registro</title>
+        <link rel="stylesheet" href="estilo.css">
+      </head>
+      <!--Creamos los label e inputs necesarios para hacer la estructura del formulario-->
+      <body>
+        <h1>Registro de Persona</h1>
+        <form id="registroForm">
+          <label>Nombre: <input type="text" name="nombre" required></label><br>
+          <label>Edad: <input type="number" name="edad" required></label><br>
+          <label>Correo: <input type="email" name="email" required></label><br>
+    
+          <label>Género:</label>
+          <label><input type="radio" name="genero" value="Femenino">Femenino</label>
+          <label><input type="radio" name="genero" value="Masculino">Masculino</label><br>
+    
+          <label>Preferencias:</label>
+          <label><input type="checkbox" name="preferencias" value="Música">Música</label>
+          <label><input type="checkbox" name="preferencias" value="Deportes">Deportes</label>
+          <label><input type="checkbox" name="preferencias" value="Lectura">Lectura</label><br>
+    
+          <label>Región:
+            <select name="region">
+              <option value="latam">Latam</option>
+              <option value="europa">Europa</option>
+              <option value="antartida">Antartida</option>
+            </select>
+          </label><br>
+
+          <button type="submit">Registrar</button>
+        </form>
+
+        <h2>Datos ingresados:</h2>
+        <div id="resultado">
+        </div>
+
+        <script src="funciones.js"></script>
+      </body>
+  </html>
