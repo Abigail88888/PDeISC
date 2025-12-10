@@ -1,4 +1,4 @@
-// index.js - Servidor Express principal (VERSIÓN PARA RAILWAY)
+// index.js - Servidor Express principal
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
@@ -14,7 +14,7 @@ const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
   process.env.FRONTEND_URL, 
-  'https://frontend-jqj252luc-portfolios-projects-9707c5a3.vercel.app',
+  'https://frontend-m51rvnsx8-portfolios-projects-9707c5a3.vercel.app',
   '/https:\/\/frontend-.*\.vercel\.app$/',
 ];
 
