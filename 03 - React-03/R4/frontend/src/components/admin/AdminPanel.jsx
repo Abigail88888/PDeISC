@@ -287,7 +287,7 @@ export default function AdminPanel() {
   };
 
   /**
-   * Renderizar tabla de items - MEJORADA
+   * Renderizar tabla de items - MEJORADA CON BOTONES MÁS VISIBLES
    */
   const renderTable = (type, items, columns) => {
     return (
@@ -300,7 +300,7 @@ export default function AdminPanel() {
                   {col.label}
                 </th>
               ))}
-              <th className="text-center p-4 text-text-primary font-mono text-sm font-bold">
+              <th className="text-center p-4 text-text-primary font-mono text-sm font-bold min-w-[200px]">
                 Acciones
               </th>
             </tr>
@@ -325,15 +325,15 @@ export default function AdminPanel() {
                     </td>
                   ))}
                   <td className="p-4">
-                    <div className="flex justify-center gap-2">
-                      {/* BOTÓN EDITAR MEJORADO */}
+                    <div className="flex justify-center gap-3 flex-wrap">
+                      {/* ✅ BOTÓN EDITAR MEJORADO - MÁS GRANDE Y CLARO */}
                       <button
                         onClick={() => handleEdit(type, item)}
                         className="
                           group
-                          px-4 py-2
-                          bg-syntax-blue/10
-                          border border-syntax-blue
+                          px-5 py-2.5
+                          bg-syntax-blue/20
+                          border-2 border-syntax-blue
                           text-syntax-blue
                           rounded-lg
                           hover:bg-syntax-blue
@@ -341,22 +341,24 @@ export default function AdminPanel() {
                           hover:shadow-glow-blue
                           transition-all
                           flex items-center gap-2
-                          font-mono text-sm font-semibold
+                          font-mono text-sm font-bold
+                          min-w-[110px]
+                          justify-center
                         "
                         title="Editar elemento"
                       >
-                        <i className="fas fa-edit"></i>
-                        <span className="hidden sm:inline">Editar</span>
+                        <i className="fas fa-edit text-base"></i>
+                        <span>Editar</span>
                       </button>
 
-                      {/* BOTÓN ELIMINAR MEJORADO */}
+                      {/* ✅ BOTÓN ELIMINAR MEJORADO - MÁS GRANDE Y CLARO */}
                       <button
                         onClick={() => handleDeleteClick(type, item)}
                         className="
                           group
-                          px-4 py-2
-                          bg-status-error/10
-                          border border-status-error
+                          px-5 py-2.5
+                          bg-status-error/20
+                          border-2 border-status-error
                           text-status-error
                           rounded-lg
                           hover:bg-status-error
@@ -364,12 +366,14 @@ export default function AdminPanel() {
                           hover:shadow-lg
                           transition-all
                           flex items-center gap-2
-                          font-mono text-sm font-semibold
+                          font-mono text-sm font-bold
+                          min-w-[110px]
+                          justify-center
                         "
                         title="Eliminar elemento"
                       >
-                        <i className="fas fa-trash-alt"></i>
-                        <span className="hidden sm:inline">Eliminar</span>
+                        <i className="fas fa-trash-alt text-base"></i>
+                        <span>Eliminar</span>
                       </button>
                     </div>
                   </td>

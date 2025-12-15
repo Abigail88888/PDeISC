@@ -142,22 +142,26 @@ export default function MenuHamburguesa({ isOpen, onClose, onLoginClick }) {
             </p>
           </div>
         ) : (
+          /* ✅ BOTÓN DE LOGIN MEJORADO PARA MÓVIL */
           <div className="p-4 border-b border-border-code">
             <button
               onClick={handleLoginClick}
               className="
                 w-full
-                px-4 py-3
+                px-6 py-4
                 bg-gradient-to-r from-syntax-blue to-syntax-cyan
                 text-white font-bold font-mono
+                text-base
                 rounded-lg
                 hover:shadow-glow-blue
+                hover:scale-105
+                active:scale-95
                 transition-all
-                flex items-center justify-center gap-2
+                flex items-center justify-center gap-3
               "
             >
-              <i className="fas fa-sign-in-alt"></i>
-              Admin Login
+              <i className="fas fa-sign-in-alt text-xl"></i>
+              <span>Admin Login</span>
             </button>
           </div>
         )}

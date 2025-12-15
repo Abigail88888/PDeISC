@@ -105,22 +105,27 @@ export default function Header({ onMenuToggle, onLoginClick }) {
               <LanguageToggleCompact />
             </div>
 
-            {/* SI NO ESTÁ AUTENTICADO: Botón de Login */}
+            {/* ✅ SI NO ESTÁ AUTENTICADO: Botón de Login MEJORADO */}
             {!isAuthenticated && (
               <button
                 onClick={onLoginClick}
                 className="
-                  px-4 py-2
+                  px-5 py-2.5
                   bg-gradient-to-r from-syntax-blue to-syntax-cyan
-                  text-white font-bold font-mono text-sm
+                  text-white font-bold font-mono
+                  text-sm sm:text-base
                   rounded-lg
                   hover:shadow-glow-blue
+                  hover:scale-105
+                  active:scale-95
                   transition-all
                   flex items-center gap-2
+                  min-w-[120px]
+                  justify-center
                 "
               >
-                <i className="fas fa-sign-in-alt"></i>
-                <span className="hidden sm:inline">Admin Login</span>
+                <i className="fas fa-sign-in-alt text-base"></i>
+                <span>Admin Login</span>
               </button>
             )}
 
@@ -209,7 +214,7 @@ export default function Header({ onMenuToggle, onLoginClick }) {
                               href="#admin-panel"
                               onClick={() => setShowDropdown(false)}
                               className="
-                                w-full px-4 py-2
+                                w-full px-4 py-3
                                 flex items-center gap-3
                                 text-status-warning
                                 hover:bg-status-warning/10
@@ -217,25 +222,26 @@ export default function Header({ onMenuToggle, onLoginClick }) {
                                 text-left
                               "
                             >
-                              <i className="fas fa-tools w-5"></i>
-                              <span className="text-sm font-mono">Panel Admin</span>
+                              <i className="fas fa-tools w-5 text-lg"></i>
+                              <span className="text-sm font-mono font-bold">Panel Admin</span>
                             </a>
                           )}
 
-                          {/* Logout */}
+                          {/* ✅ Logout MEJORADO - MÁS VISIBLE */}
                           <button
                             onClick={handleLogout}
                             className="
-                              w-full px-4 py-2
+                              w-full px-4 py-3
                               flex items-center gap-3
                               text-status-error
                               hover:bg-status-error/10
                               transition-colors
                               text-left
+                              font-bold
                             "
                           >
-                            <i className="fas fa-sign-out-alt w-5"></i>
-                            <span className="text-sm font-mono">{t('logout')}</span>
+                            <i className="fas fa-sign-out-alt w-5 text-lg"></i>
+                            <span className="text-sm font-mono">Cerrar Sesión</span>
                           </button>
                         </div>
                       </div>
@@ -248,46 +254,69 @@ export default function Header({ onMenuToggle, onLoginClick }) {
         </div>
       </div>
 
-      {/* Modal de confirmación de logout */}
+      {/* ✅ Modal de confirmación de logout MEJORADO */}
       {showLogoutConfirm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-code-bg-primary/80 backdrop-blur-sm">
-          <div className="bg-code-bg-secondary border border-border-code rounded-lg p-6 max-w-sm w-full">
+          <div className="bg-code-bg-secondary border-2 border-border-code rounded-xl p-8 max-w-sm w-full shadow-2xl">
             <div className="text-center mb-6">
-              <i className="fas fa-sign-out-alt text-4xl text-status-warning mb-4"></i>
-              <h3 className="text-xl font-bold text-text-primary mb-2 font-mono">
-                Cerrar Sesión
+              {/* Icono grande y visible */}
+              <div className="
+                w-20 h-20
+                mx-auto mb-4
+                bg-status-warning/20
+                border-2 border-status-warning
+                rounded-full
+                flex items-center justify-center
+                animate-pulse
+              ">
+                <i className="fas fa-sign-out-alt text-4xl text-status-warning"></i>
+              </div>
+              
+              <h3 className="text-2xl font-bold text-text-primary mb-3 font-mono">
+                ¿Cerrar Sesión?
               </h3>
               <p className="text-text-secondary text-sm">
-                ¿Estás seguro que deseas cerrar sesión?
+                ¿Estás seguro que deseas cerrar tu sesión de administrador?
               </p>
             </div>
+
+            {/* Botones mejorados */}
             <div className="flex gap-3">
               <button
                 onClick={() => setShowLogoutConfirm(false)}
                 className="
-                  flex-1 px-4 py-2
+                  flex-1 px-6 py-3
                   bg-code-bg-tertiary
-                  border border-border-code
+                  border-2 border-border-code
                   text-text-primary
-                  font-mono rounded-lg
+                  font-mono font-bold
+                  rounded-lg
                   hover:bg-code-bg-primary
+                  hover:border-syntax-blue
                   transition-all
+                  flex items-center justify-center gap-2
                 "
               >
+                <i className="fas fa-times"></i>
                 Cancelar
               </button>
               <button
                 onClick={confirmLogout}
                 className="
-                  flex-1 px-4 py-2
+                  flex-1 px-6 py-3
                   bg-status-error
+                  border-2 border-status-error
                   text-white font-mono font-bold
                   rounded-lg
                   hover:bg-status-error/80
+                  hover:scale-105
+                  active:scale-95
                   transition-all
+                  flex items-center justify-center gap-2
                 "
               >
-                Cerrar Sesión
+                <i className="fas fa-sign-out-alt"></i>
+                Cerrar
               </button>
             </div>
           </div>
