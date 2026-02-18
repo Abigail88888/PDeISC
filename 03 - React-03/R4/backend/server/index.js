@@ -9,38 +9,9 @@ const portfolioRoutes = require('./routes/portfolio.js');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:3000',
-  process.env.FRONTEND_URL, 
-  'https://frontend-ciawvowq7-portfolios-projects-9707c5a3.vercel.app',
-  '/https:\/\/frontend-.*\.vercel\.app$/',
-];
-
 app.use(cors({
-  origin: function (origin, callback) {
-    // Permitir requests sin origin
-    if (!origin) return callback(null, true);
-    
-    // Verificar si el origin está en la lista permitida
-    const isAllowed = allowedOrigins.some(allowedOrigin => {
-      if (allowedOrigin instanceof RegExp) {
-        return allowedOrigin.test(origin);
-      }
-      return allowedOrigin === origin;
-    });
-    
-    if (isAllowed) {
-      callback(null, true);
-    } else {
-      console.warn(`⚠️  Origin no permitido: ${origin}`);
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: true,
+  credentials: true
 }));
 
 app.use(express.json({ limit: '10mb' }));
